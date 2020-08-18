@@ -10,11 +10,12 @@ use PHPUnit\Framework\TestCase;
 
 class GildedRoseTest extends TestCase
 {
-    public function testFoo(): void
+    /** @testdox All items have a SellIn value which denotes the number of days we have to sell the item */
+    public function testItemsHaveSellInValue(): void
     {
-        $items = [new Item('foo', 0, 0)];
-        $gildedRose = new GildedRose($items);
-        $gildedRose->updateQuality();
-        $this->assertSame('fixme', $items[0]->name);
+        $value = 10;
+        $item = new Item('foo', $value, 0);
+        $this->assertObjectHasAttribute('sell_in', $item);
+        $this->assertEquals($value, $item->sell_in);
     }
 }
