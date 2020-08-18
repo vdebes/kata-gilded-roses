@@ -18,4 +18,13 @@ class GildedRoseTest extends TestCase
         $this->assertObjectHasAttribute('sell_in', $item);
         $this->assertEquals($value, $item->sell_in);
     }
+
+    /** @testdox All items have a Quality value which denotes how valuable the item is */
+    public function testItemsHaveQualityValue(): void
+    {
+        $quality = 10;
+        $item = new Item('foo', 0, $quality);
+        $this->assertObjectHasAttribute('quality', $item);
+        $this->assertEquals($quality, $item->quality);
+    }
 }
