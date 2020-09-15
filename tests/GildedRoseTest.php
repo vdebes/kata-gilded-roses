@@ -59,4 +59,19 @@ class GildedRoseTest extends TestCase
 
         $this->assertEquals($newQualityDiff, $qualityDiff * 2);
     }
+
+    /** @testdox The Quality of an item is never negative */
+    public function testItemQualityCannotBeNegative(): Void
+    {
+        $items = [new Item('foo', 1, 1), new Item('bar', 2, 2)];
+        $gildedRose = new GildedRose($items);
+
+        foreach ($items as $item) {
+            while ($item->quality !== 0) {
+                $gildedRose->updateQuality();
+            }
+
+            $this->assertGreaterThanOrEqual(0, $item->quality);
+        }
+    }
 }
